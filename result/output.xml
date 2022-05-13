@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0 (Python 3.8.7 on win32)" generated="20220513 23:22:15.506" rpa="false" schemaversion="3">
+<suite id="s1" name="Test" source="D:\todoist_exam-master\test">
+<suite id="s1-s1" name="Project Suite" source="D:\todoist_exam-master\test\project_suite.robot">
+<test id="s1-s1-t1" name="TC001_Create_Project_Successfully" line="12">
+<kw name="Create New Project" library="project">
+<var>${create_project_res}</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${create_project_url}</var>
+<arg>${api_host}${create_project_endpoint}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:15.645" level="INFO">${create_project_url} = https://api.todoist.com/rest/v1/projects</msg>
+<status status="PASS" starttime="20220513 23:22:15.645" endtime="20220513 23:22:15.645"/>
+</kw>
+<kw name="Get Data Json" library="common">
+<var>${json}</var>
+<arg>project.json</arg>
+<kw name="Get File Path" library="common">
+<var>${path}</var>
+<arg>${path_data_json}${json_file_name}</arg>
+<kw name="Join Path" library="OperatingSystem">
+<var>${path}</var>
+<arg>D:\\todoist_exam-master\\page</arg>
+<arg>${file_path}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220513 23:22:15.646" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:15.646" endtime="20220513 23:22:15.646"/>
+</kw>
+<msg timestamp="20220513 23:22:15.646" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:15.645" endtime="20220513 23:22:15.646"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${data}</var>
+<arg>${path}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20220513 23:22:15.646" level="INFO" html="true">Getting file '&lt;a href="file://D:\todoist_exam-master\data_json\project.json"&gt;D:\todoist_exam-master\data_json\project.json&lt;/a&gt;'.</msg>
+<msg timestamp="20220513 23:22:15.647" level="INFO">${data} = {
+  "create_project": {
+    "data": {
+      "name": "To_Be_Define"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-Id": "To_Be_Define",
+      "Authorization": "To_Be...</msg>
+<status status="PASS" starttime="20220513 23:22:15.646" endtime="20220513 23:22:15.647"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${data}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:15.647" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:15.647" endtime="20220513 23:22:15.647"/>
+</kw>
+<msg timestamp="20220513 23:22:15.647" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:15.645" endtime="20220513 23:22:15.647"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${data}</var>
+<arg>${json['create_project']['data']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:15.648" level="INFO">${data} = {'name': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:15.647" endtime="20220513 23:22:15.648"/>
+</kw>
+<kw name="Generate Random String" library="String">
+<var>${random_str}</var>
+<arg>length=8</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<msg timestamp="20220513 23:22:15.648" level="INFO">${random_str} = y0ZkEtNx</msg>
+<status status="PASS" starttime="20220513 23:22:15.648" endtime="20220513 23:22:15.648"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${project_name}</var>
+<arg>Project ${random_str}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:15.649" level="INFO">${project_name} = Project y0ZkEtNx</msg>
+<status status="PASS" starttime="20220513 23:22:15.648" endtime="20220513 23:22:15.649"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${data}</arg>
+<arg>name=${project_name}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:15.649" endtime="20220513 23:22:15.649"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${headers}</var>
+<arg>${json['create_project']['headers']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:15.650" level="INFO">${headers} = {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:15.649" endtime="20220513 23:22:15.650"/>
+</kw>
+<kw name="Random uuid String" library="common">
+<var>${request_id}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_str}</var>
+<arg>uuid.uuid4()</arg>
+<arg>modules=uuid</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:15.651" level="INFO">${random_str} = e941fdf7-8273-425a-b2f9-6929f8ed24ba</msg>
+<status status="PASS" starttime="20220513 23:22:15.650" endtime="20220513 23:22:15.651"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${random_str}</var>
+<arg>${random_str}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:15.652" level="INFO">${random_str} = e941fdf7-8273-425a-b2f9-6929f8ed24ba</msg>
+<status status="PASS" starttime="20220513 23:22:15.651" endtime="20220513 23:22:15.652"/>
+</kw>
+<msg timestamp="20220513 23:22:15.652" level="INFO">${request_id} = e941fdf7-8273-425a-b2f9-6929f8ed24ba</msg>
+<status status="PASS" starttime="20220513 23:22:15.650" endtime="20220513 23:22:15.652"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>X-Request-Id=${request_id}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:15.652" endtime="20220513 23:22:15.652"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=${api_key}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:15.652" endtime="20220513 23:22:15.653"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${create_project_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:15.653" level="INFO">https://api.todoist.com/rest/v1/projects</msg>
+<status status="PASS" starttime="20220513 23:22:15.653" endtime="20220513 23:22:15.653"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:15.653" level="INFO">{'name': 'Project y0ZkEtNx'}</msg>
+<status status="PASS" starttime="20220513 23:22:15.653" endtime="20220513 23:22:15.653"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:15.653" level="INFO">{'Content-Type': 'application/json', 'X-Request-Id': 'e941fdf7-8273-425a-b2f9-6929f8ed24ba', 'Authorization': 'Bearer 0ca06961f89808a0ffee1fc5fc82578b647060e2'}</msg>
+<status status="PASS" starttime="20220513 23:22:15.653" endtime="20220513 23:22:15.653"/>
+</kw>
+<kw name="Post Request" library="request_helper">
+<var>${create_project_res}</var>
+<arg>${create_project_url}</arg>
+<arg>${data}</arg>
+<arg>${headers}</arg>
+<msg timestamp="20220513 23:22:16.388" level="INFO">${create_project_res} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:15.653" endtime="20220513 23:22:16.389"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${create_project_res.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220513 23:22:16.392" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:16.389" endtime="20220513 23:22:16.392"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${create_project_res.json()['name']}</arg>
+<arg>${project_name}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220513 23:22:16.393" endtime="20220513 23:22:16.396"/>
+</kw>
+<msg timestamp="20220513 23:22:16.399" level="INFO">${create_project_res} = {'id': 2291478666, 'order': 6, 'color': 47, 'name': 'Project y0ZkEtNx', 'comment_count': 0, 'shared': False, 'favorite': False, 'sync_id': 0, 'url': 'https://todoist.com/showProject?id=2291478666'}</msg>
+<status status="PASS" starttime="20220513 23:22:15.644" endtime="20220513 23:22:16.399"/>
+</kw>
+<kw name="Login To Application" library="login_page">
+<arg>${type_email}</arg>
+<kw name="Open Mobile Application" library="common">
+<kw name="Open Application">
+<arg>${remoteUrl}</arg>
+<arg>${alias}</arg>
+<arg>platformName=${platform_name}</arg>
+<arg>appPackage=${app_package}</arg>
+<arg>appActivity=${app_activity}</arg>
+<arg>automationName=${uiautomator2}</arg>
+<msg timestamp="20220513 23:22:16.414" level="FAIL">No keyword with name 'Open Application' found.</msg>
+<status status="FAIL" starttime="20220513 23:22:16.414" endtime="20220513 23:22:16.414"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:16.402" endtime="20220513 23:22:16.421"/>
+</kw>
+<if>
+<branch type="IF" condition="'${login_type}' == 'Email'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Select Email To Login</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20220513 23:22:16.423" endtime="20220513 23:22:16.424"/>
+</kw>
+<status status="NOT RUN" starttime="20220513 23:22:16.423" endtime="20220513 23:22:16.424"/>
+</branch>
+<status status="NOT RUN" starttime="20220513 23:22:16.422" endtime="20220513 23:22:16.424"/>
+</if>
+<kw name="Wait Until Page Contains Element">
+<arg>${email_edit_text}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.431" endtime="20220513 23:22:16.431"/>
+</kw>
+<kw name="Input Text">
+<arg>${email_edit_text}</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.435" endtime="20220513 23:22:16.435"/>
+</kw>
+<kw name="Click Element">
+<arg>${btn_continue_with_mail}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.440" endtime="20220513 23:22:16.440"/>
+</kw>
+<kw name="Wait Until Page Contains Element">
+<arg>${password_edit_text}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.444" endtime="20220513 23:22:16.444"/>
+</kw>
+<kw name="Input Text">
+<arg>${password_edit_text}</arg>
+<arg>${password}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.448" endtime="20220513 23:22:16.448"/>
+</kw>
+<kw name="Click Element">
+<arg>${btn_login}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.453" endtime="20220513 23:22:16.453"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20220513 23:22:16.453" endtime="20220513 23:22:16.453"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:16.401" endtime="20220513 23:22:16.454"/>
+</kw>
+<kw name="Navigate To DashBoard Page" library="home_page">
+<status status="NOT RUN" starttime="20220513 23:22:16.455" endtime="20220513 23:22:16.455"/>
+</kw>
+<kw name="Check Create Project Success" library="dashboard_page">
+<arg>${create_project_res['name']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:16.456" endtime="20220513 23:22:16.456"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:15.643" endtime="20220513 23:22:16.456">No keyword with name 'Open Application' found.</status>
+</test>
+<status status="FAIL" starttime="20220513 23:22:15.529" endtime="20220513 23:22:16.459"/>
+</suite>
+<suite id="s1-s2" name="Task Suite" source="D:\todoist_exam-master\test\task_suite.robot">
+<test id="s1-s2-t1" name="TC001_Create_Task_Successfully" line="14">
+<kw name="Create New Project" library="project">
+<var>${create_project_res}</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${create_project_url}</var>
+<arg>${api_host}${create_project_endpoint}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:16.489" level="INFO">${create_project_url} = https://api.todoist.com/rest/v1/projects</msg>
+<status status="PASS" starttime="20220513 23:22:16.489" endtime="20220513 23:22:16.489"/>
+</kw>
+<kw name="Get Data Json" library="common">
+<var>${json}</var>
+<arg>project.json</arg>
+<kw name="Get File Path" library="common">
+<var>${path}</var>
+<arg>${path_data_json}${json_file_name}</arg>
+<kw name="Join Path" library="OperatingSystem">
+<var>${path}</var>
+<arg>D:\\todoist_exam-master\\page</arg>
+<arg>${file_path}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220513 23:22:16.490" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:16.490" endtime="20220513 23:22:16.490"/>
+</kw>
+<msg timestamp="20220513 23:22:16.490" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:16.489" endtime="20220513 23:22:16.490"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${data}</var>
+<arg>${path}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20220513 23:22:16.490" level="INFO" html="true">Getting file '&lt;a href="file://D:\todoist_exam-master\data_json\project.json"&gt;D:\todoist_exam-master\data_json\project.json&lt;/a&gt;'.</msg>
+<msg timestamp="20220513 23:22:16.491" level="INFO">${data} = {
+  "create_project": {
+    "data": {
+      "name": "To_Be_Define"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-Id": "To_Be_Define",
+      "Authorization": "To_Be...</msg>
+<status status="PASS" starttime="20220513 23:22:16.490" endtime="20220513 23:22:16.491"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${data}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:16.491" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:16.491" endtime="20220513 23:22:16.491"/>
+</kw>
+<msg timestamp="20220513 23:22:16.491" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:16.489" endtime="20220513 23:22:16.491"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${data}</var>
+<arg>${json['create_project']['data']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:16.492" level="INFO">${data} = {'name': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:16.491" endtime="20220513 23:22:16.492"/>
+</kw>
+<kw name="Generate Random String" library="String">
+<var>${random_str}</var>
+<arg>length=8</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<msg timestamp="20220513 23:22:16.492" level="INFO">${random_str} = H43bU2hx</msg>
+<status status="PASS" starttime="20220513 23:22:16.492" endtime="20220513 23:22:16.492"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${project_name}</var>
+<arg>Project ${random_str}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:16.492" level="INFO">${project_name} = Project H43bU2hx</msg>
+<status status="PASS" starttime="20220513 23:22:16.492" endtime="20220513 23:22:16.492"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${data}</arg>
+<arg>name=${project_name}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:16.493" endtime="20220513 23:22:16.493"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${headers}</var>
+<arg>${json['create_project']['headers']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:16.493" level="INFO">${headers} = {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:16.493" endtime="20220513 23:22:16.494"/>
+</kw>
+<kw name="Random uuid String" library="common">
+<var>${request_id}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_str}</var>
+<arg>uuid.uuid4()</arg>
+<arg>modules=uuid</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:16.494" level="INFO">${random_str} = cbbd9d75-fa90-49e8-a09b-7a76e18fd77f</msg>
+<status status="PASS" starttime="20220513 23:22:16.494" endtime="20220513 23:22:16.494"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${random_str}</var>
+<arg>${random_str}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:16.494" level="INFO">${random_str} = cbbd9d75-fa90-49e8-a09b-7a76e18fd77f</msg>
+<status status="PASS" starttime="20220513 23:22:16.494" endtime="20220513 23:22:16.494"/>
+</kw>
+<msg timestamp="20220513 23:22:16.495" level="INFO">${request_id} = cbbd9d75-fa90-49e8-a09b-7a76e18fd77f</msg>
+<status status="PASS" starttime="20220513 23:22:16.494" endtime="20220513 23:22:16.495"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>X-Request-Id=${request_id}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:16.495" endtime="20220513 23:22:16.495"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=${api_key}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:16.495" endtime="20220513 23:22:16.495"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${create_project_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:16.496" level="INFO">https://api.todoist.com/rest/v1/projects</msg>
+<status status="PASS" starttime="20220513 23:22:16.496" endtime="20220513 23:22:16.496"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:16.496" level="INFO">{'name': 'Project H43bU2hx'}</msg>
+<status status="PASS" starttime="20220513 23:22:16.496" endtime="20220513 23:22:16.496"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:16.496" level="INFO">{'Content-Type': 'application/json', 'X-Request-Id': 'cbbd9d75-fa90-49e8-a09b-7a76e18fd77f', 'Authorization': 'Bearer 0ca06961f89808a0ffee1fc5fc82578b647060e2'}</msg>
+<status status="PASS" starttime="20220513 23:22:16.496" endtime="20220513 23:22:16.496"/>
+</kw>
+<kw name="Post Request" library="request_helper">
+<var>${create_project_res}</var>
+<arg>${create_project_url}</arg>
+<arg>${data}</arg>
+<arg>${headers}</arg>
+<msg timestamp="20220513 23:22:17.025" level="INFO">${create_project_res} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:16.496" endtime="20220513 23:22:17.025"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${create_project_res.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220513 23:22:17.028" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:17.025" endtime="20220513 23:22:17.029"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${create_project_res.json()['name']}</arg>
+<arg>${project_name}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220513 23:22:17.029" endtime="20220513 23:22:17.033"/>
+</kw>
+<msg timestamp="20220513 23:22:17.036" level="INFO">${create_project_res} = {'id': 2291478667, 'order': 7, 'color': 47, 'name': 'Project H43bU2hx', 'comment_count': 0, 'shared': False, 'favorite': False, 'sync_id': 0, 'url': 'https://todoist.com/showProject?id=2291478667'}</msg>
+<status status="PASS" starttime="20220513 23:22:16.488" endtime="20220513 23:22:17.036"/>
+</kw>
+<kw name="Login To Application" library="login_page">
+<arg>${type_email}</arg>
+<kw name="Open Mobile Application" library="common">
+<kw name="Open Application">
+<arg>${remoteUrl}</arg>
+<arg>${alias}</arg>
+<arg>platformName=${platform_name}</arg>
+<arg>appPackage=${app_package}</arg>
+<arg>appActivity=${app_activity}</arg>
+<arg>automationName=${uiautomator2}</arg>
+<msg timestamp="20220513 23:22:17.053" level="FAIL">No keyword with name 'Open Application' found.</msg>
+<status status="FAIL" starttime="20220513 23:22:17.053" endtime="20220513 23:22:17.053"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:17.039" endtime="20220513 23:22:17.056"/>
+</kw>
+<if>
+<branch type="IF" condition="'${login_type}' == 'Email'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Select Email To Login</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20220513 23:22:17.057" endtime="20220513 23:22:17.057"/>
+</kw>
+<status status="NOT RUN" starttime="20220513 23:22:17.057" endtime="20220513 23:22:17.058"/>
+</branch>
+<status status="NOT RUN" starttime="20220513 23:22:17.057" endtime="20220513 23:22:17.058"/>
+</if>
+<kw name="Wait Until Page Contains Element">
+<arg>${email_edit_text}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.062" endtime="20220513 23:22:17.062"/>
+</kw>
+<kw name="Input Text">
+<arg>${email_edit_text}</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.066" endtime="20220513 23:22:17.066"/>
+</kw>
+<kw name="Click Element">
+<arg>${btn_continue_with_mail}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.071" endtime="20220513 23:22:17.071"/>
+</kw>
+<kw name="Wait Until Page Contains Element">
+<arg>${password_edit_text}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.075" endtime="20220513 23:22:17.075"/>
+</kw>
+<kw name="Input Text">
+<arg>${password_edit_text}</arg>
+<arg>${password}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.080" endtime="20220513 23:22:17.080"/>
+</kw>
+<kw name="Click Element">
+<arg>${btn_login}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.084" endtime="20220513 23:22:17.084"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20220513 23:22:17.084" endtime="20220513 23:22:17.084"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:17.037" endtime="20220513 23:22:17.085"/>
+</kw>
+<kw name="Navigate To DashBoard Page" library="home_page">
+<status status="NOT RUN" starttime="20220513 23:22:17.086" endtime="20220513 23:22:17.086"/>
+</kw>
+<kw name="Open List Project" library="dashboard_page">
+<status status="NOT RUN" starttime="20220513 23:22:17.087" endtime="20220513 23:22:17.087"/>
+</kw>
+<kw name="Open Project Page" library="dashboard_page">
+<arg>${create_project_res['name']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.087" endtime="20220513 23:22:17.087"/>
+</kw>
+<kw name="Add New Task" library="project_page">
+<status status="NOT RUN" starttime="20220513 23:22:17.088" endtime="20220513 23:22:17.088"/>
+</kw>
+<kw name="Get Active Task" library="task">
+<arg>${create_project_res['id']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:17.088" endtime="20220513 23:22:17.089"/>
+</kw>
+<kw name="Run Keywords" library="BuiltIn" type="TEARDOWN">
+<arg>Clean Project Data</arg>
+<arg>${create_project_res['id']}</arg>
+<arg>AND</arg>
+<arg>Close Mobile Application</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<kw name="Clean Project Data" library="project">
+<arg>${create_project_res['id']}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${url_delete_project}</var>
+<arg>${api_host}${delete_project_endpoint}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:17.092" level="INFO">${url_delete_project} = https://api.todoist.com/rest/v1/projects/{{project_id}}</msg>
+<status status="PASS" starttime="20220513 23:22:17.092" endtime="20220513 23:22:17.092"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${project_id}</var>
+<arg>${project_id}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:17.093" level="INFO">${project_id} = 2291478667</msg>
+<status status="PASS" starttime="20220513 23:22:17.092" endtime="20220513 23:22:17.093"/>
+</kw>
+<kw name="Replace String" library="String">
+<var>${url_delete_project}</var>
+<arg>${url_delete_project}</arg>
+<arg>{{project_id}}</arg>
+<arg>${project_id}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<msg timestamp="20220513 23:22:17.093" level="INFO">${url_delete_project} = https://api.todoist.com/rest/v1/projects/2291478667</msg>
+<status status="PASS" starttime="20220513 23:22:17.093" endtime="20220513 23:22:17.093"/>
+</kw>
+<kw name="Get Data Json" library="common">
+<var>${json}</var>
+<arg>project.json</arg>
+<kw name="Get File Path" library="common">
+<var>${path}</var>
+<arg>${path_data_json}${json_file_name}</arg>
+<kw name="Join Path" library="OperatingSystem">
+<var>${path}</var>
+<arg>D:\\todoist_exam-master\\page</arg>
+<arg>${file_path}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220513 23:22:17.094" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:17.094" endtime="20220513 23:22:17.094"/>
+</kw>
+<msg timestamp="20220513 23:22:17.095" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:17.094" endtime="20220513 23:22:17.095"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${data}</var>
+<arg>${path}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20220513 23:22:17.095" level="INFO" html="true">Getting file '&lt;a href="file://D:\todoist_exam-master\data_json\project.json"&gt;D:\todoist_exam-master\data_json\project.json&lt;/a&gt;'.</msg>
+<msg timestamp="20220513 23:22:17.095" level="INFO">${data} = {
+  "create_project": {
+    "data": {
+      "name": "To_Be_Define"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-Id": "To_Be_Define",
+      "Authorization": "To_Be...</msg>
+<status status="PASS" starttime="20220513 23:22:17.095" endtime="20220513 23:22:17.095"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${data}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:17.096" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:17.095" endtime="20220513 23:22:17.096"/>
+</kw>
+<msg timestamp="20220513 23:22:17.096" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:17.093" endtime="20220513 23:22:17.096"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${headers}</var>
+<arg>${json['delete_project']['headers']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:17.097" level="INFO">${headers} = {'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:17.096" endtime="20220513 23:22:17.097"/>
+</kw>
+<kw name="Random uuid String" library="common">
+<var>${request_id}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_str}</var>
+<arg>uuid.uuid4()</arg>
+<arg>modules=uuid</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:17.098" level="INFO">${random_str} = 324ca647-4dbb-426a-a6e9-0991b32fd0a5</msg>
+<status status="PASS" starttime="20220513 23:22:17.098" endtime="20220513 23:22:17.098"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${random_str}</var>
+<arg>${random_str}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:17.098" level="INFO">${random_str} = 324ca647-4dbb-426a-a6e9-0991b32fd0a5</msg>
+<status status="PASS" starttime="20220513 23:22:17.098" endtime="20220513 23:22:17.098"/>
+</kw>
+<msg timestamp="20220513 23:22:17.098" level="INFO">${request_id} = 324ca647-4dbb-426a-a6e9-0991b32fd0a5</msg>
+<status status="PASS" starttime="20220513 23:22:17.097" endtime="20220513 23:22:17.098"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>X-Request-Id=${request_id}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:17.099" endtime="20220513 23:22:17.099"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=${api_key}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:17.099" endtime="20220513 23:22:17.099"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${url_delete_project}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:17.100" level="INFO">https://api.todoist.com/rest/v1/projects/2291478667</msg>
+<status status="PASS" starttime="20220513 23:22:17.099" endtime="20220513 23:22:17.100"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:17.100" level="INFO">{'X-Request-Id': '324ca647-4dbb-426a-a6e9-0991b32fd0a5', 'Authorization': 'Bearer 0ca06961f89808a0ffee1fc5fc82578b647060e2'}</msg>
+<status status="PASS" starttime="20220513 23:22:17.100" endtime="20220513 23:22:17.100"/>
+</kw>
+<kw name="Delete Request" library="request_helper">
+<var>${delete_project_res}</var>
+<arg>${url_delete_project}</arg>
+<arg>${headers}</arg>
+<msg timestamp="20220513 23:22:19.041" level="INFO">${delete_project_res} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:17.100" endtime="20220513 23:22:19.041"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${delete_project_res.status_code}</arg>
+<arg>204</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20220513 23:22:19.044" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:19.041" endtime="20220513 23:22:19.045"/>
+</kw>
+<status status="PASS" starttime="20220513 23:22:17.090" endtime="20220513 23:22:19.045"/>
+</kw>
+<kw name="Close Mobile Application" library="common">
+<kw name="Close Application">
+<msg timestamp="20220513 23:22:19.060" level="FAIL">No keyword with name 'Close Application' found.</msg>
+<status status="FAIL" starttime="20220513 23:22:19.059" endtime="20220513 23:22:19.060"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:19.046" endtime="20220513 23:22:19.060"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:17.090" endtime="20220513 23:22:19.061">No keyword with name 'Close Application' found.</status>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:16.488" endtime="20220513 23:22:19.063">No keyword with name 'Open Application' found.
+
+Also teardown failed:
+No keyword with name 'Close Application' found.</status>
+</test>
+<test id="s1-s2-t2" name="TC002_Reopen_Task_Successfully" line="25">
+<kw name="Create New Project" library="project">
+<var>${create_project_res}</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${create_project_url}</var>
+<arg>${api_host}${create_project_endpoint}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:19.069" level="INFO">${create_project_url} = https://api.todoist.com/rest/v1/projects</msg>
+<status status="PASS" starttime="20220513 23:22:19.068" endtime="20220513 23:22:19.069"/>
+</kw>
+<kw name="Get Data Json" library="common">
+<var>${json}</var>
+<arg>project.json</arg>
+<kw name="Get File Path" library="common">
+<var>${path}</var>
+<arg>${path_data_json}${json_file_name}</arg>
+<kw name="Join Path" library="OperatingSystem">
+<var>${path}</var>
+<arg>D:\\todoist_exam-master\\page</arg>
+<arg>${file_path}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220513 23:22:19.071" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:19.071" endtime="20220513 23:22:19.071"/>
+</kw>
+<msg timestamp="20220513 23:22:19.071" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:19.070" endtime="20220513 23:22:19.071"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${data}</var>
+<arg>${path}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20220513 23:22:19.072" level="INFO" html="true">Getting file '&lt;a href="file://D:\todoist_exam-master\data_json\project.json"&gt;D:\todoist_exam-master\data_json\project.json&lt;/a&gt;'.</msg>
+<msg timestamp="20220513 23:22:19.073" level="INFO">${data} = {
+  "create_project": {
+    "data": {
+      "name": "To_Be_Define"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-Id": "To_Be_Define",
+      "Authorization": "To_Be...</msg>
+<status status="PASS" starttime="20220513 23:22:19.072" endtime="20220513 23:22:19.073"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${data}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:19.073" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:19.073" endtime="20220513 23:22:19.073"/>
+</kw>
+<msg timestamp="20220513 23:22:19.074" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:19.069" endtime="20220513 23:22:19.074"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${data}</var>
+<arg>${json['create_project']['data']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:19.075" level="INFO">${data} = {'name': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:19.074" endtime="20220513 23:22:19.075"/>
+</kw>
+<kw name="Generate Random String" library="String">
+<var>${random_str}</var>
+<arg>length=8</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<msg timestamp="20220513 23:22:19.076" level="INFO">${random_str} = Zj1HY0Ge</msg>
+<status status="PASS" starttime="20220513 23:22:19.076" endtime="20220513 23:22:19.076"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${project_name}</var>
+<arg>Project ${random_str}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:19.077" level="INFO">${project_name} = Project Zj1HY0Ge</msg>
+<status status="PASS" starttime="20220513 23:22:19.076" endtime="20220513 23:22:19.077"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${data}</arg>
+<arg>name=${project_name}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:19.077" endtime="20220513 23:22:19.077"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${headers}</var>
+<arg>${json['create_project']['headers']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:19.079" level="INFO">${headers} = {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:19.078" endtime="20220513 23:22:19.079"/>
+</kw>
+<kw name="Random uuid String" library="common">
+<var>${request_id}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_str}</var>
+<arg>uuid.uuid4()</arg>
+<arg>modules=uuid</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:19.080" level="INFO">${random_str} = e9ccc792-6a33-47c3-b2d9-0946f7f68716</msg>
+<status status="PASS" starttime="20220513 23:22:19.080" endtime="20220513 23:22:19.080"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${random_str}</var>
+<arg>${random_str}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:19.081" level="INFO">${random_str} = e9ccc792-6a33-47c3-b2d9-0946f7f68716</msg>
+<status status="PASS" starttime="20220513 23:22:19.080" endtime="20220513 23:22:19.081"/>
+</kw>
+<msg timestamp="20220513 23:22:19.081" level="INFO">${request_id} = e9ccc792-6a33-47c3-b2d9-0946f7f68716</msg>
+<status status="PASS" starttime="20220513 23:22:19.079" endtime="20220513 23:22:19.081"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>X-Request-Id=${request_id}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:19.082" endtime="20220513 23:22:19.082"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=${api_key}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:19.083" endtime="20220513 23:22:19.083"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${create_project_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:19.084" level="INFO">https://api.todoist.com/rest/v1/projects</msg>
+<status status="PASS" starttime="20220513 23:22:19.083" endtime="20220513 23:22:19.084"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:19.084" level="INFO">{'name': 'Project Zj1HY0Ge'}</msg>
+<status status="PASS" starttime="20220513 23:22:19.084" endtime="20220513 23:22:19.084"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:19.085" level="INFO">{'Content-Type': 'application/json', 'X-Request-Id': 'e9ccc792-6a33-47c3-b2d9-0946f7f68716', 'Authorization': 'Bearer 0ca06961f89808a0ffee1fc5fc82578b647060e2'}</msg>
+<status status="PASS" starttime="20220513 23:22:19.085" endtime="20220513 23:22:19.085"/>
+</kw>
+<kw name="Post Request" library="request_helper">
+<var>${create_project_res}</var>
+<arg>${create_project_url}</arg>
+<arg>${data}</arg>
+<arg>${headers}</arg>
+<msg timestamp="20220513 23:22:20.663" level="INFO">${create_project_res} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:19.085" endtime="20220513 23:22:20.663"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${create_project_res.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220513 23:22:20.665" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:20.663" endtime="20220513 23:22:20.665"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${create_project_res.json()['name']}</arg>
+<arg>${project_name}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220513 23:22:20.665" endtime="20220513 23:22:20.666"/>
+</kw>
+<msg timestamp="20220513 23:22:20.667" level="INFO">${create_project_res} = {'id': 2291478671, 'order': 7, 'color': 47, 'name': 'Project Zj1HY0Ge', 'comment_count': 0, 'shared': False, 'favorite': False, 'sync_id': 0, 'url': 'https://todoist.com/showProject?id=2291478671'}</msg>
+<status status="PASS" starttime="20220513 23:22:19.068" endtime="20220513 23:22:20.667"/>
+</kw>
+<kw name="Login To Application" library="login_page">
+<arg>${type_email}</arg>
+<kw name="Open Mobile Application" library="common">
+<kw name="Open Application">
+<arg>${remoteUrl}</arg>
+<arg>${alias}</arg>
+<arg>platformName=${platform_name}</arg>
+<arg>appPackage=${app_package}</arg>
+<arg>appActivity=${app_activity}</arg>
+<arg>automationName=${uiautomator2}</arg>
+<msg timestamp="20220513 23:22:20.674" level="FAIL">No keyword with name 'Open Application' found.</msg>
+<status status="FAIL" starttime="20220513 23:22:20.673" endtime="20220513 23:22:20.674"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:20.669" endtime="20220513 23:22:20.674"/>
+</kw>
+<if>
+<branch type="IF" condition="'${login_type}' == 'Email'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Select Email To Login</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20220513 23:22:20.675" endtime="20220513 23:22:20.675"/>
+</kw>
+<status status="NOT RUN" starttime="20220513 23:22:20.675" endtime="20220513 23:22:20.675"/>
+</branch>
+<status status="NOT RUN" starttime="20220513 23:22:20.675" endtime="20220513 23:22:20.675"/>
+</if>
+<kw name="Wait Until Page Contains Element">
+<arg>${email_edit_text}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.678" endtime="20220513 23:22:20.678"/>
+</kw>
+<kw name="Input Text">
+<arg>${email_edit_text}</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.681" endtime="20220513 23:22:20.681"/>
+</kw>
+<kw name="Click Element">
+<arg>${btn_continue_with_mail}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.684" endtime="20220513 23:22:20.684"/>
+</kw>
+<kw name="Wait Until Page Contains Element">
+<arg>${password_edit_text}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.687" endtime="20220513 23:22:20.687"/>
+</kw>
+<kw name="Input Text">
+<arg>${password_edit_text}</arg>
+<arg>${password}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.689" endtime="20220513 23:22:20.689"/>
+</kw>
+<kw name="Click Element">
+<arg>${btn_login}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.691" endtime="20220513 23:22:20.692"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20220513 23:22:20.692" endtime="20220513 23:22:20.692"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:20.668" endtime="20220513 23:22:20.692"/>
+</kw>
+<kw name="Navigate To DashBoard Page" library="home_page">
+<status status="NOT RUN" starttime="20220513 23:22:20.693" endtime="20220513 23:22:20.693"/>
+</kw>
+<kw name="Open List Project" library="dashboard_page">
+<status status="NOT RUN" starttime="20220513 23:22:20.693" endtime="20220513 23:22:20.693"/>
+</kw>
+<kw name="Open Project Page" library="dashboard_page">
+<arg>${create_project_res['name']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.694" endtime="20220513 23:22:20.694"/>
+</kw>
+<kw name="Add New Task" library="project_page">
+<status status="NOT RUN" starttime="20220513 23:22:20.694" endtime="20220513 23:22:20.694"/>
+</kw>
+<kw name="Get Active Task" library="task">
+<var>${get_active_tasks_res}</var>
+<arg>${create_project_res['id']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.694" endtime="20220513 23:22:20.694"/>
+</kw>
+<kw name="Completed Task" library="project_page">
+<status status="NOT RUN" starttime="20220513 23:22:20.694" endtime="20220513 23:22:20.694"/>
+</kw>
+<kw name="Reopen Task" library="task">
+<arg>${get_active_tasks_res[0]['id']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.694" endtime="20220513 23:22:20.694"/>
+</kw>
+<kw name="Check Reopen Task Success" library="project_page">
+<arg>${create_project_res['name']}</arg>
+<arg>${get_active_tasks_res[0]['content']}</arg>
+<status status="NOT RUN" starttime="20220513 23:22:20.695" endtime="20220513 23:22:20.695"/>
+</kw>
+<kw name="Run Keywords" library="BuiltIn" type="TEARDOWN">
+<arg>Clean Project Data</arg>
+<arg>${create_project_res['id']}</arg>
+<arg>AND</arg>
+<arg>Close Mobile Application</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<kw name="Clean Project Data" library="project">
+<arg>${create_project_res['id']}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${url_delete_project}</var>
+<arg>${api_host}${delete_project_endpoint}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:20.696" level="INFO">${url_delete_project} = https://api.todoist.com/rest/v1/projects/{{project_id}}</msg>
+<status status="PASS" starttime="20220513 23:22:20.696" endtime="20220513 23:22:20.696"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${project_id}</var>
+<arg>${project_id}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:20.697" level="INFO">${project_id} = 2291478671</msg>
+<status status="PASS" starttime="20220513 23:22:20.697" endtime="20220513 23:22:20.697"/>
+</kw>
+<kw name="Replace String" library="String">
+<var>${url_delete_project}</var>
+<arg>${url_delete_project}</arg>
+<arg>{{project_id}}</arg>
+<arg>${project_id}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<msg timestamp="20220513 23:22:20.697" level="INFO">${url_delete_project} = https://api.todoist.com/rest/v1/projects/2291478671</msg>
+<status status="PASS" starttime="20220513 23:22:20.697" endtime="20220513 23:22:20.697"/>
+</kw>
+<kw name="Get Data Json" library="common">
+<var>${json}</var>
+<arg>project.json</arg>
+<kw name="Get File Path" library="common">
+<var>${path}</var>
+<arg>${path_data_json}${json_file_name}</arg>
+<kw name="Join Path" library="OperatingSystem">
+<var>${path}</var>
+<arg>D:\\todoist_exam-master\\page</arg>
+<arg>${file_path}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220513 23:22:20.698" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:20.698" endtime="20220513 23:22:20.698"/>
+</kw>
+<msg timestamp="20220513 23:22:20.698" level="INFO">${path} = D:\todoist_exam-master\data_json\project.json</msg>
+<status status="PASS" starttime="20220513 23:22:20.697" endtime="20220513 23:22:20.698"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${data}</var>
+<arg>${path}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20220513 23:22:20.699" level="INFO" html="true">Getting file '&lt;a href="file://D:\todoist_exam-master\data_json\project.json"&gt;D:\todoist_exam-master\data_json\project.json&lt;/a&gt;'.</msg>
+<msg timestamp="20220513 23:22:20.699" level="INFO">${data} = {
+  "create_project": {
+    "data": {
+      "name": "To_Be_Define"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-Id": "To_Be_Define",
+      "Authorization": "To_Be...</msg>
+<status status="PASS" starttime="20220513 23:22:20.699" endtime="20220513 23:22:20.699"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${data}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:20.699" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:20.699" endtime="20220513 23:22:20.699"/>
+</kw>
+<msg timestamp="20220513 23:22:20.700" level="INFO">${json} = {'create_project': {'data': {'name': 'To_Be_Define'}, 'headers': {'Content-Type': 'application/json', 'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}}, 'delete_project': {'headers': {...</msg>
+<status status="PASS" starttime="20220513 23:22:20.697" endtime="20220513 23:22:20.700"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${headers}</var>
+<arg>${json['delete_project']['headers']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220513 23:22:20.700" level="INFO">${headers} = {'X-Request-Id': 'To_Be_Define', 'Authorization': 'To_Be_Define'}</msg>
+<status status="PASS" starttime="20220513 23:22:20.700" endtime="20220513 23:22:20.700"/>
+</kw>
+<kw name="Random uuid String" library="common">
+<var>${request_id}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_str}</var>
+<arg>uuid.uuid4()</arg>
+<arg>modules=uuid</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220513 23:22:20.701" level="INFO">${random_str} = ab4cf69f-679e-453a-b9f7-045a16db4fdc</msg>
+<status status="PASS" starttime="20220513 23:22:20.701" endtime="20220513 23:22:20.701"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${random_str}</var>
+<arg>${random_str}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220513 23:22:20.701" level="INFO">${random_str} = ab4cf69f-679e-453a-b9f7-045a16db4fdc</msg>
+<status status="PASS" starttime="20220513 23:22:20.701" endtime="20220513 23:22:20.701"/>
+</kw>
+<msg timestamp="20220513 23:22:20.701" level="INFO">${request_id} = ab4cf69f-679e-453a-b9f7-045a16db4fdc</msg>
+<status status="PASS" starttime="20220513 23:22:20.700" endtime="20220513 23:22:20.701"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>X-Request-Id=${request_id}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:20.702" endtime="20220513 23:22:20.702"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=${api_key}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220513 23:22:20.702" endtime="20220513 23:22:20.702"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${url_delete_project}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:20.702" level="INFO">https://api.todoist.com/rest/v1/projects/2291478671</msg>
+<status status="PASS" starttime="20220513 23:22:20.702" endtime="20220513 23:22:20.702"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220513 23:22:20.703" level="INFO">{'X-Request-Id': 'ab4cf69f-679e-453a-b9f7-045a16db4fdc', 'Authorization': 'Bearer 0ca06961f89808a0ffee1fc5fc82578b647060e2'}</msg>
+<status status="PASS" starttime="20220513 23:22:20.703" endtime="20220513 23:22:20.703"/>
+</kw>
+<kw name="Delete Request" library="request_helper">
+<var>${delete_project_res}</var>
+<arg>${url_delete_project}</arg>
+<arg>${headers}</arg>
+<msg timestamp="20220513 23:22:22.460" level="INFO">${delete_project_res} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:20.703" endtime="20220513 23:22:22.460"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${delete_project_res.status_code}</arg>
+<arg>204</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20220513 23:22:22.464" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220513 23:22:22.461" endtime="20220513 23:22:22.464"/>
+</kw>
+<status status="PASS" starttime="20220513 23:22:20.695" endtime="20220513 23:22:22.464"/>
+</kw>
+<kw name="Close Mobile Application" library="common">
+<kw name="Close Application">
+<msg timestamp="20220513 23:22:22.478" level="FAIL">No keyword with name 'Close Application' found.</msg>
+<status status="FAIL" starttime="20220513 23:22:22.477" endtime="20220513 23:22:22.478"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:22.465" endtime="20220513 23:22:22.478"/>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:20.695" endtime="20220513 23:22:22.479">No keyword with name 'Close Application' found.</status>
+</kw>
+<status status="FAIL" starttime="20220513 23:22:19.068" endtime="20220513 23:22:22.480">No keyword with name 'Open Application' found.
+
+Also teardown failed:
+No keyword with name 'Close Application' found.</status>
+</test>
+<status status="FAIL" starttime="20220513 23:22:16.461" endtime="20220513 23:22:22.486"/>
+</suite>
+<status status="FAIL" starttime="20220513 23:22:15.507" endtime="20220513 23:22:22.490"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="3" skip="0" id="s1" name="Test">Test</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Project Suite">Test.Project Suite</stat>
+<stat pass="0" fail="2" skip="0" id="s1-s2" name="Task Suite">Test.Task Suite</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220513 23:22:15.534" level="ERROR">Error in file 'D:\todoist_exam-master\page\common.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+<msg timestamp="20220513 23:22:15.556" level="ERROR">Error in file 'D:\todoist_exam-master\page\ui\home_page.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+<msg timestamp="20220513 23:22:15.560" level="ERROR">Error in file 'D:\todoist_exam-master\page\ui\dashboard_page.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+<msg timestamp="20220513 23:22:16.466" level="ERROR">Error in file 'D:\todoist_exam-master\page\common.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+<msg timestamp="20220513 23:22:16.472" level="ERROR">Error in file 'D:\todoist_exam-master\page\ui\home_page.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+<msg timestamp="20220513 23:22:16.475" level="ERROR">Error in file 'D:\todoist_exam-master\page\ui\dashboard_page.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+<msg timestamp="20220513 23:22:16.480" level="ERROR">Error in file 'D:\todoist_exam-master\page\ui\project_page.resource' on line 2: Importing library 'AppiumLibrary' failed: ModuleNotFoundError: No module named 'AppiumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\quoch\AppData\Local\Programs\Python\Python38\Scripts\robot.exe
+  c:\users\quoch\appdata\local\programs\python\python38\python38.zip
+  c:\users\quoch\appdata\local\programs\python\python38\DLLs
+  c:\users\quoch\appdata\local\programs\python\python38\lib
+  c:\users\quoch\appdata\local\programs\python\python38
+  c:\users\quoch\appdata\local\programs\python\python38\lib\site-packages</msg>
+</errors>
+</robot>
